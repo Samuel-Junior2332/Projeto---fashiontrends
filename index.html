@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FashionTrends | Gestão de produtos</title>
+<link rel="icon" type="image/png" href="img/simbolo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+<section id="telaLogin" class="tela-login">
+<div class="login-marca">
+<img src="img/logo.png" alt="FashionTrends" class="login-logo">
+<p class="slogan">A tendência chega aqui primeiro.</p>
+</div>
+<div class="login-formulario">
+<form id="formularioLogin" class="login-caixa" novalidate>
+<h2>Entrar</h2>
+<label>Usuário
+<input type="text" id="campoUsuario" autocomplete="username">
+</label>
+<label>Senha
+<input type="password" id="campoSenha" autocomplete="current-password">
+</label>
+<span class="erro" id="erroLogin"></span>
+<button type="submit">Entrar</button>
+<p class="dica">Acesso de demonstração: rafael, senha: fashion123</p>
+</form>
+</div>
+</section>
+
+<div id="telaApp" class="app" hidden>
+<aside class="menu">
+<a class="menu-logo" href="#inicio"><img src="img/logo.png" alt="FashionTrends"></a>
+<nav class="menu-nav">
+<a class="menu-link" href="#inicio" data-pagina="inicio">Início</a>
+<a class="menu-link" href="#produtos" data-pagina="produtos">Produtos</a>
+<a class="menu-link menu-link-externo" href="loja.html" target="_blank" rel="noopener">Vitrine <span aria-hidden="true">↗</span><span class="sr-only">(abre em nova aba)</span></a>
+</nav>
+<div class="menu-rodape">
+<div class="menu-usuario">
+<strong id="nomeUsuario"></strong>
+<span id="perfilUsuario"></span>
+</div>
+<button type="button" id="botaoSair" class="secundario">Sair</button>
+</div>
+</aside>
+
+<main class="conteudo">
+
+<section class="pagina" data-pagina="inicio">
+<div class="cabecalho-pagina">
+<h1 id="saudacao">Olá</h1>
+<p>A tendência chega aqui primeiro. Veja como está o catálogo agora.</p>
+</div>
+<div class="resumo" id="resumo"></div>
+<div class="duas-colunas">
+<div class="painel">
+<h2>Esgotados ainda no ar</h2>
+<p class="nota">Esgotou! Quem viu, viu. Tire essas peças da vitrine para evitar cancelamentos.</p>
+<div id="alertasEsgotados"></div>
+<div class="acoes-painel">
+<button type="button" id="botaoDespublicar">Despublicar esgotados</button>
+<span id="mensagemAcao" class="mensagem" role="status"></span>
+</div>
+</div>
+<div class="painel">
+<h2>Estoque baixo</h2>
+<p class="nota">Peças com poucas unidades. Hora de falar com o fornecedor.</p>
+<div id="alertasBaixo"></div>
+<div class="acoes-painel">
+<a class="atalho" href="#produtos">Gerenciar produtos</a>
+</div>
+</div>
+</div>
+</section>
+
+<section class="pagina" data-pagina="produtos" hidden>
+<div class="cabecalho-pagina">
+<h1>Produtos</h1>
+<p>Cadastre peças, ajuste preços e controle o estoque do catálogo.</p>
+</div>
+<div class="area">
+<section class="painel">
+<h2 id="tituloFormulario">Novo produto</h2>
+<form id="formulario" novalidate>
+<input type="hidden" id="campoId">
+<label>Nome
+<input type="text" id="campoNome">
+<span class="erro" data-erro="nome"></span>
+</label>
+<label>Descrição
+<textarea id="campoDescricao" rows="3"></textarea>
+</label>
+<div class="linha">
+<label>Categoria
+<select id="campoCategoria"></select>
+<span class="erro" data-erro="categoria"></span>
+</label>
+<label>Cor
+<input type="text" id="campoCor">
+</label>
+</div>
+<div class="linha">
+<label>Preço (R$)
+<input type="number" id="campoPreco" step="0.01" min="0">
+<span class="erro" data-erro="preco"></span>
+</label>
+<label>Preço promocional
+<input type="number" id="campoPrecoPromocional" step="0.01" min="0" placeholder="Opcional">
+<span class="erro" data-erro="precoPromocional"></span>
+</label>
+</div>
+<label>Estoque
+<input type="number" id="campoEstoque" step="1" min="0">
+<span class="erro" data-erro="estoque"></span>
+</label>
+<fieldset>
+<legend>Tamanhos</legend>
+<div id="areaTamanhos"></div>
+<span class="erro" data-erro="tamanhos"></span>
+</fieldset>
+<label>Foto (link ou caminho)
+<input type="text" id="campoImagem" placeholder="https://... ou img/produtos/foto.jpg">
+<span class="erro" data-erro="imagem"></span>
+</label>
+<label class="opcao"><input type="checkbox" id="campoAtivo" checked>Publicado na loja</label>
+<label class="opcao"><input type="checkbox" id="campoDestaque">Destaque na vitrine</label>
+<div class="botoes">
+<button type="submit">Salvar produto</button>
+<button type="button" id="botaoCancelar" class="secundario" hidden>Cancelar edição</button>
+</div>
+</form>
+</section>
+<section class="catalogo">
+<div class="filtros">
+<input type="search" id="campoBusca" placeholder="Buscar por nome">
+<select id="filtroCategoria"></select>
+<select id="filtroSituacao">
+<option value="todas">Todas as situações</option>
+<option value="disponivel">Disponíveis</option>
+<option value="esgotado">Esgotados no ar</option>
+<option value="despublicado">Despublicados</option>
+</select>
+<select id="filtroOrdem">
+<option value="recentes">Mais recentes</option>
+<option value="nome">Nome (A-Z)</option>
+<option value="menor-preco">Menor preço</option>
+<option value="maior-preco">Maior preço</option>
+</select>
+</div>
+<div id="lista" class="lista"></div>
+</section>
+</div>
+</section>
+
+</main>
+</div>
+
+<script src="js/armazenamento.js"></script>
+<script src="js/produtos.js"></script>
+<script src="js/ilustracoes.js"></script>
+<script src="js/componentes.js"></script>
+<script src="js/autenticacao.js"></script>
+<script src="js/interface.js"></script>
+<script src="js/inicio.js"></script>
+<script src="js/navegacao.js"></script>
+<script src="js/principal.js"></script>
+</body>
+</html>

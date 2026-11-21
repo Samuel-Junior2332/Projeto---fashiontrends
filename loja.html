@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FashionTrends | A tendência chega aqui primeiro</title>
+<link rel="icon" type="image/png" href="img/simbolo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+<div class="loja-aviso">A tendência chega aqui primeiro.</div>
+
+<header class="loja-topo">
+<a href="loja.html" class="loja-marca"><img src="img/logo.png" alt="FashionTrends"></a>
+<input type="search" id="campoBuscaLoja" placeholder="Buscar peças" aria-label="Buscar peças">
+</header>
+
+<section class="loja-hero">
+<h1>A peça do momento acabou de chegar.</h1>
+<p>Mini-coleções novas a cada 15 dias. Esgotou? Quem viu, viu.</p>
+</section>
+
+<main class="loja-corpo">
+<div class="loja-barra">
+<div id="categorias" class="categorias"></div>
+<select id="ordemLoja" aria-label="Ordenar peças">
+<option value="destaques">Destaques</option>
+<option value="novidades">Novidades</option>
+<option value="menor-preco">Menor preço</option>
+<option value="maior-preco">Maior preço</option>
+</select>
+</div>
+<p id="contagem" class="contagem" role="status"></p>
+<div id="vitrine" class="vitrine"></div>
+</main>
+
+<footer class="loja-rodape">
+<p>FashionTrends Comércio de Moda Ltda. · São Paulo, SP</p>
+<p>Envio para todo o Brasil</p>
+</footer>
+
+<dialog id="dialogoDetalhes" class="dialogo">
+<button type="button" id="botaoFechar" class="fechar" aria-label="Fechar">&times;</button>
+<div id="conteudoDetalhes"></div>
+</dialog>
+
+<script src="js/armazenamento.js"></script>
+<script src="js/produtos.js"></script>
+<script src="js/ilustracoes.js"></script>
+<script src="js/componentes.js"></script>
+<script src="js/loja.js"></script>
+</body>
+</html>
